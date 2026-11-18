@@ -1,255 +1,272 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#100b20">
-  <title>CLIPORA AI — Short-form Video Studio</title>
-  <style>
-    :root{--bg:#0b0815;--panel:#151027;--panel2:#1c1535;--line:#35285a;--text:#f8f5ff;--muted:#b9b0d0;--pink:#d946ef;--purple:#8b5cf6;--cyan:#67e8f9}
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(ellipse at 80% 0%,#30205b 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    .wrap{max-width:900px;margin:auto;padding:22px 16px 60px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:46px}
-    .brand{font-weight:900;font-size:23px;letter-spacing:.5px}.brand span{color:#c084fc}
-    .tag{color:var(--muted);font-size:11px;letter-spacing:2px;font-weight:700}
-    .badge{border:1px solid var(--line);background:#21183b;padding:8px 12px;border-radius:99px;color:#d9c9ff;font-size:12px}
-    .hero{text-align:center;margin:0 auto 34px;max-width:700px}
-    .eyebrow{display:inline-block;border:1px solid #62429c;background:#21143c;color:#e9d5ff;border-radius:99px;padding:7px 13px;font-size:12px;font-weight:800;letter-spacing:1px}
-    h1{font-size:clamp(34px,7vw,58px);line-height:1.08;letter-spacing:-2px;margin:20px 0 14px}
-    h1 .gradient{background:linear-gradient(90deg,#e879f9,#a78bfa,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sub{color:var(--muted);font-size:17px}
-    .card{background:linear-gradient(150deg,rgba(31,23,57,.97),rgba(17,13,31,.98));border:1px solid var(--line);border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 18px 50px #0004}
-    h2{font-size:22px;margin:0 0 5px} .hint{color:var(--muted);font-size:14px;margin:0 0 18px}
-    label{display:block;font-weight:750;margin:15px 0 7px}
-    input,select,button{font:inherit}
-    input[type=file],input[type=number],input[type=text],input[type=url],select{width:100%;border:1px solid #49376f;background:#0d0a19;color:var(--text);border-radius:12px;padding:13px}
-    input[type=file]{padding:12px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .btn{border:0;border-radius:13px;padding:14px 18px;font-weight:850;color:white;background:linear-gradient(100deg,var(--purple),var(--pink));cursor:pointer;width:100%;margin-top:18px}
-    .btn:disabled{opacity:.45;cursor:not-allowed}
-    .btn.secondary{background:#292044;border:1px solid #55417f}
-    video{width:100%;max-height:420px;background:#05040a;border-radius:14px;margin-top:14px}
-    .status{margin-top:14px;border:1px solid #49376f;background:#100c20;border-radius:12px;padding:12px;color:#ddd2f5;font-size:14px;white-space:pre-wrap}
-    .note{border-left:3px solid #f0abfc;background:#211638;padding:12px 14px;border-radius:8px;color:#e9ddff;font-size:13px;margin-top:16px}
-    .result a{display:inline-block;margin-top:10px;color:#f0abfc;font-weight:800}
-    footer{text-align:center;color:#8f86a8;font-size:12px;margin-top:28px}
-    @media(max-width:560px){.grid{grid-template-columns:1fr}.card{padding:17px}.badge{display:none}header{margin-bottom:32px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b20">
+<title>CLIPORA AI — Video Studio</title>
+
+<style>
+:root {
+  --bg:#0b0815;
+  --panel:#151027;
+  --line:#35285a;
+  --text:#f8f5ff;
+  --muted:#b9b0d0;
+  --pink:#d946ef;
+  --purple:#8b5cf6;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.5 system-ui,sans-serif;
+}
+
+.wrap {
+  max-width:850px;
+  margin:auto;
+  padding:25px 16px;
+}
+
+header {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:35px;
+}
+
+.brand {
+  font-size:24px;
+  font-weight:900;
+}
+
+.brand span { color:#c084fc; }
+
+.hero {
+  text-align:center;
+  margin-bottom:30px;
+}
+
+h1 { font-size:clamp(34px,7vw,55px); }
+
+.gradient {
+  background:linear-gradient(90deg,#e879f9,#a78bfa,#67e8f9);
+  color:transparent;
+  background-clip:text;
+}
+
+.sub,.hint { color:var(--muted); }
+
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:20px;
+}
+
+h2 { margin-top:0; }
+
+label {
+  display:block;
+  margin:15px 0 7px;
+  font-weight:700;
+}
+
+input,button {
+  width:100%;
+  padding:13px;
+  border-radius:11px;
+  font:inherit;
+}
+
+input {
+  background:#0d0a19;
+  color:white;
+  border:1px solid #49376f;
+}
+
+button {
+  border:0;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(100deg,var(--purple),var(--pink));
+  margin-top:12px;
+  cursor:pointer;
+}
+
+video {
+  width:100%;
+  margin-top:15px;
+  border-radius:12px;
+  background:#000;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.status {
+  background:#100c20;
+  border:1px solid #49376f;
+  padding:13px;
+  margin-top:15px;
+  border-radius:10px;
+  white-space:pre-wrap;
+}
+
+.result a {
+  display:inline-block;
+  margin-top:12px;
+  color:#f0abfc;
+}
+
+.note {
+  color:#e9ddff;
+  background:#211638;
+  padding:12px;
+  margin-top:15px;
+  border-radius:9px;
+  font-size:13px;
+}
+
+footer {
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:30px;
+}
+
+@media(max-width:550px) {
+  .grid { grid-template-columns:1fr; }
+}
+</style>
 </head>
+
 <body>
-  <main class="wrap">
-    <header>
-      <div><div class="brand">✦ CLIPORA <span>AI</span></div><div class="tag">CREATE MORE. EDIT LESS.</div></div>
-      <div class="badge">BROWSER CLIP EDITOR</div>
-    </header>
+<main class="wrap">
 
-    <section class="hero">
-      <div class="eyebrow">✦ YOUR SHORT-FORM VIDEO STUDIO</div>
-      <h1>One long video.<br><span class="gradient">Multiple short clips.</span></h1>
-      <p class="sub">Choose a video, select a moment, and export a short clip from your browser.</p>
-    </section>
+<header>
+  <div>
+    <div class="brand">✦ CLIPORA <span>AI</span></div>
+    <small>CREATE MORE. EDIT LESS.</small>
+  </div>
+</header>
 
-    <section class="card">
-      <h2>Create a clip</h2>
-      <p class="hint">This first version edits a video file stored on your device.</p>
+<section class="hero">
+  <h1>One long video.<br>
+  <span class="gradient">Multiple short clips.</span></h1>
+  <p class="sub">Your AI-powered short-form video studio.</p>
+</section>
 
-      <label for="videoUrl">Paste your video link</label>
-       <input
-       id="videoUrl"
-       type="url"
-     placeholder="Paste YouTube or video URL here"
->
-<button type="button" id="processVideo">Generate Clips</button>
-      
+<section class="card">
+  <h2>Create a clip</h2>
+  <p class="hint">Start by pasting a YouTube video link.</p>
 
-      <video id="sourceVideo" controls playsinline hidden></video>
+  <label for="videoUrl">Paste your YouTube link</label>
+  <input id="videoUrl" type="url"
+  placeholder="https://www.youtube.com/watch?v=...">
 
-      <div class="grid">
-        <div>
-          <label for="startTime">Start time (seconds)</label>
-          <input id="startTime" type="number" min="0" step="0.1" value="0">
-        </div>
-        <div>
-          <label for="endTime">End time (seconds)</label>
-          <input id="endTime" type="number" min="1" step="0.1" value="30">
-        </div>
-      </div>
+  <button type="button" id="processVideo">
+    Generate Clips
+  </button>
 
-      <label for="clipTitle">Clip name</label>
-      <input id="clipTitle" type="text" maxlength="60" value="My CLIPORA clip" placeholder="Name your clip">
+  <video id="sourceVideo" controls playsinline hidden></video>
 
-      <button class="btn" id="makeClip" disabled>✦ Create and export clip</button>
-      <div class="status" id="status" aria-live="polite">Choose a video file to get started.</div>
-      <div class="result" id="result"></div>
+  <div class="grid">
+    <div>
+      <label for="startTime">Start time (seconds)</label>
+      <input id="startTime" type="number" min="0" value="0">
+    </div>
+    <div>
+      <label for="endTime">End time (seconds)</label>
+      <input id="endTime" type="number" min="1" value="30">
+    </div>
+  </div>
 
-      <div class="note">
-        <strong>Important:</strong> This version can trim an uploaded local video in your browser and export a WebM file where supported. It does not yet analyse YouTube links, automatically find viral moments, or burn captions into the video. Those features need a secure server-side video/AI backend.
-      </div>
-    </section>
+  <label for="clipTitle">Clip name</label>
+  <input id="clipTitle" type="text" value="My CLIPORA clip">
 
-    <section class="card">
-      <h2>Coming next</h2>
-      <p class="hint">The following features need a backend before they can work for everyone:</p>
-      <ul>
-        <li>AI detection of engaging moments</li>
-        <li>Automatic speech-to-text captions</li>
-        <li>YouTube URL importing with permission and supported source access</li>
-        <li>MP4 rendering and cloud clip storage</li>
-      </ul>
-    </section>
+  <button type="button" id="makeClip" disabled>
+    ✦ Create and export clip
+  </button>
 
-    <footer>CLIPORA AI · Use only videos you own or have permission to edit.</footer>
-  </main>
+  <div class="status" id="status">
+    Paste a YouTube link to begin.
+  </div>
 
-  <script>
-    const fileInput = document.getElementById('videoFile');
-    const video = document.getElementById('sourceVideo');
-    const startInput = document.getElementById('startTime');
-    const endInput = document.getElementById('endTime');
-    const makeButton = document.getElementById('makeClip');
-    const statusBox = document.getElementById('status');
-    const resultBox = document.getElementById('result');
-    let sourceUrl = null;
+  <div class="result" id="result"></div>
 
-    function say(message) { statusBox.textContent = message; }
+  <div class="note">
+    YouTube link checking is available in this demo.
+    Automatic AI video processing, highlight detection
+    and caption generation require a backend.
+    Only process videos you own or have permission to edit.
+  </div>
+</section>
 
-    fileInput.addEventListener('change', () => {
-      const file = fileInput.files && fileInput.files[0];
-      resultBox.innerHTML = '';
-      if (!file) {
-        makeButton.disabled = true;
-        return;
-      }
-      if (!file.type.startsWith('video/')) {
-        say('Please choose a valid video file.');
-        makeButton.disabled = true;
-        return;
-      }
-      if (sourceUrl) URL.revokeObjectURL(sourceUrl);
-      sourceUrl = URL.createObjectURL(file);
-      video.src = sourceUrl;
-      video.hidden = false;
-      video.onloadedmetadata = () => {
-        startInput.value = '0';
-        endInput.value = Math.min(30, video.duration).toFixed(1);
-        endInput.max = video.duration;
-        startInput.max = video.duration;
-        makeButton.disabled = false;
-        say(`Video ready. Duration: ${video.duration.toFixed(1)} seconds. Choose your start and end times.`);
-      };
-      video.onerror = () => say('This video format could not be opened by your browser. Try another video file.');
-    });
+<section class="card">
+  <h2>Coming next</h2>
+  <ul>
+    <li>AI highlight detection</li>
+    <li>30–60 second clips</li>
+    <li>Animated captions</li>
+    <li>Video download</li>
+  </ul>
+</section>
 
-    makeButton.addEventListener('click', async () => {
-      const start = Number(startInput.value);
-      const end = Number(endInput.value);
-      const duration = video.duration;
-      if (!video.src || !Number.isFinite(duration)) return say('Upload a video first.');
-      if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start || end > duration) {
-        return say(`Choose valid times. The video is ${duration.toFixed(1)} seconds long.`);
-      }
-      if (!window.MediaRecorder || !video.captureStream) {
-        return say('Your browser does not support in-browser clip export. Try the latest Chrome browser on a supported device.');
-      }
+<footer>CLIPORA AI · Your short-form video studio</footer>
 
-      const stream = video.captureStream();
-      const mimeTypes = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'];
-      const mimeType = mimeTypes.find(type => MediaRecorder.isTypeSupported(type));
-      if (!mimeType) return say('WebM export is not supported by this browser.');
+</main>
 
-      makeButton.disabled = true;
-      resultBox.innerHTML = '';
-      say('Preparing your clip… Keep this page open while it exports.');
+<script>
+const button = document.getElementById("processVideo");
+const input = document.getElementById("videoUrl");
+const statusBox = document.getElementById("status");
 
-      const chunks = [];
-      let recorder;
-      try {
-        video.pause();
-        video.currentTime = start;
-        await new Promise((resolve, reject) => {
-          const timer = setTimeout(() => reject(new Error('Video seek timed out.')), 10000);
-          video.addEventListener('seeked', () => { clearTimeout(timer); resolve(); }, {once:true});
-        });
+button.addEventListener("click", function() {
 
-        recorder = new MediaRecorder(stream, {mimeType});
-        recorder.ondataavailable = event => { if (event.data && event.data.size) chunks.push(event.data); };
-        recorder.onerror = () => say('The browser encountered an export error. Please try again.');
-        const stopped = new Promise(resolve => recorder.onstop = resolve);
-        recorder.start(250);
-        await video.play();
+  const url = input.value.trim();
 
-        await new Promise((resolve, reject) => {
-          const check = () => {
-            if (video.currentTime >= end || video.ended) {
-              video.pause();
-              resolve();
-            } else if (video.error) {
-              reject(new Error('Video playback failed during export.'));
-            } else {
-              requestAnimationFrame(check);
-            }
-          };
-          requestAnimationFrame(check);
-        });
-
-        recorder.stop();
-        await stopped;
-        stream.getTracks().forEach(track => track.stop());
-
-        const blob = new Blob(chunks, {type:mimeType});
-        if (!blob.size) throw new Error('No video data was recorded. Please try another file/browser.');
-        const url = URL.createObjectURL(blob);
-        const safeName = (document.getElementById('clipTitle').value || 'clip')
-          .trim().replace(/[^a-z0-9-_]+/gi,'-').replace(/^-+|-+$/g,'').slice(0,50) || 'clip';
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${safeName}.webm`;
-        link.textContent = '⬇ Download your clip (.webm)';
-        resultBox.appendChild(link);
-        say(`Clip exported successfully (${(blob.size / 1024 / 1024).toFixed(2)} MB).`);
-      } catch (error) {
-        if (recorder && recorder.state !== 'inactive') recorder.stop();
-        stream.getTracks().forEach(track => track.stop());
-        say(`Could not export this clip: ${error.message}`);
-      } finally {
-        makeButton.disabled = false;
-      }
-    });
-document.getElementById("processVideo").addEventListener("click", function() {
-  const url = document.getElementById("videoUrl").value.trim();
-
-  
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  const button = document.getElementById("processVideo");
-  const input = document.getElementById("videoUrl");
-
-  if (!button || !input) {
-    alert("CLIPORA AI: Button or input not found!");
+  if (!url) {
+    statusBox.textContent =
+      "Please paste a YouTube link first!";
     return;
   }
 
-  button.addEventListener("click", function() {
+  let parsedUrl;
 
-    const url = input.value.trim();
+  try {
+    parsedUrl = new URL(url);
+  } catch (error) {
+    statusBox.textContent =
+      "Please enter a valid video URL.";
+    return;
+  }
 
-    if (!url) {
-      alert("Please paste a YouTube link first!");
-      return;
-    }
+  const host = parsedUrl.hostname.toLowerCase();
 
-    if (!url.includes("youtube.com") &&
-        !url.includes("youtu.be")) {
-      alert("Please enter a valid YouTube link!");
-      return;
-    }
+  const isYouTube =
+    host === "youtube.com" ||
+    host.endsWith(".youtube.com") ||
+    host === "youtu.be";
 
-    alert("YouTube link accepted! Preparing video processing...");
+  if (!isYouTube) {
+    statusBox.textContent =
+      "Please enter a valid YouTube link!";
+    return;
+  }
 
-  });
-
+  statusBox.textContent =
+    "YouTube link accepted! Preparing video processing...";
 });
+
 </script>
+</body>
 </html>
