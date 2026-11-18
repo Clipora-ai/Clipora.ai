@@ -54,8 +54,14 @@
       <h2>Create a clip</h2>
       <p class="hint">This first version edits a video file stored on your device.</p>
 
-      <label for="videoFile">Upload your video</label>
-      <input id="videoFile" type="file" accept="video/*">
+      <label for="videoUrl">Paste your video link</label>
+       <input
+       id="videoUrl"
+       type="url"
+     placeholder="Paste YouTube or video URL here"
+>
+<button id="processVideo">Generate Clips</button>
+      
 
       <video id="sourceVideo" controls playsinline hidden></video>
 
