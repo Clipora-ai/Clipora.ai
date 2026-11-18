@@ -216,27 +216,40 @@
         makeButton.disabled = false;
       }
     });
-  
-<script>
 document.getElementById("processVideo").addEventListener("click", function() {
   const url = document.getElementById("videoUrl").value.trim();
 
   
-    if (!url) {
-  alert("Please paste a YouTube link first!");
-  return;
-}
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
 
-if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
-  alert("Please enter a valid YouTube link!");
-  return;
-}
+  const button = document.getElementById("processVideo");
+  const input = document.getElementById("videoUrl");
 
-alert("YouTube link accepted! Preparing video processing...");
-    
+  if (!button || !input) {
+    alert("CLIPORA AI: Button or input not found!");
+    return;
   }
 
-  alert("Your video link has been received! AI processing will be added next.");
+  button.addEventListener("click", function() {
+
+    const url = input.value.trim();
+
+    if (!url) {
+      alert("Please paste a YouTube link first!");
+      return;
+    }
+
+    if (!url.includes("youtube.com") &&
+        !url.includes("youtu.be")) {
+      alert("Please enter a valid YouTube link!");
+      return;
+    }
+
+    alert("YouTube link accepted! Preparing video processing...");
+
+  });
+
 });
 </script>
 </html>
