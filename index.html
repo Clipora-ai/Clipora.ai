@@ -217,5 +217,16 @@
       }
     });
   </script>
-</body>
+<script>
+document.getElementById("processVideo").addEventListener("click", function() {
+  const url = document.getElementById("videoUrl").value.trim();
+
+  if (!url) {
+    alert("Please paste a video link first!");
+    return;
+  }
+
+  alert("Your video link has been received! AI processing will be added next.");
+});
+</script>
 </html>
