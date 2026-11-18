@@ -221,9 +221,19 @@
 document.getElementById("processVideo").addEventListener("click", function() {
   const url = document.getElementById("videoUrl").value.trim();
 
-  if (!url) {
-    alert("Please paste a video link first!");
-    return;
+  
+    if (!url) {
+  alert("Please paste a YouTube link first!");
+  return;
+}
+
+if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+  alert("Please enter a valid YouTube link!");
+  return;
+}
+
+alert("YouTube link accepted! Preparing video processing...");
+    
   }
 
   alert("Your video link has been received! AI processing will be added next.");
